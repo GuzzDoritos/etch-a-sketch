@@ -80,6 +80,10 @@ const drawGrid = (size) => {
     applyOption();
 }
 
+window.addEventListener("load", () => {
+    drawGrid(20);
+})
+
 generateBtn.addEventListener("click", () => {
     clearGrid();
     const sizeInput = Math.round(parseFloat(gridSize.value));
