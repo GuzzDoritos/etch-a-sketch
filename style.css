@@ -10,12 +10,17 @@ body {
 .left-side, .right-side {
     display: flex;
     flex-shrink: 0;
-    justify-content: center;
     width: 50%;
+}
+
+.left-side {
+    flex-direction: column;
+    align-items: center;
 }
 
 .right-side {
     align-items: center;
+    justify-content: center;
 }
 
 #grid-container {
@@ -27,5 +32,4 @@ body {
 
 .tile {
     flex-shrink: 0;
-    outline: 1px solid black;
 }
