@@ -1,8 +1,10 @@
 const generateBtn = document.querySelector("#generate-button");
 
+const drawOptionSelector = document.querySelector("#draw-style");
+
 const gridContainer = document.querySelector("#grid-container");
 const gridSize = document.querySelector("#grid-size");
-const containerSize = 600;
+const containerSize = 500;
 gridContainer.style.width = containerSize + "px";
 gridContainer.style.height = containerSize + "px";
 
@@ -12,7 +14,60 @@ const clearGrid = () => {
     gridContainer.textContent = "";
 }
 
+function randomRainbow() {
+    const rainbowColors = [
+        "#e81416",
+        "#ffa500",
+        "#faeb36",
+        "#79c314",
+        "#487de7",
+        "#4b369d",
+        "#70369d"
+    ]
+    const random = Math.round(Math.random() * rainbowColors.length - 1);
+    return rainbowColors[random];
+}
 
+const applyOption = () => {
+
+    const tiles = document.getElementsByClassName("tile")
+    switch (drawOptionSelector.value) {
+        case "opacity":
+            for (let tile of tiles) {
+                let opacity = 0;
+                tile.addEventListener("mouseover", () => {
+                    tile.style.backgroundColor = "black";
+                    opacity += 0.1;
+                    tile.style.opacity = `${opacity}`;
+                })
+            };
+            break;
+        case "color":
+            for (let tile of tiles) {
+                tile.addEventListener("mouseover", () => {
+                    tile.style.backgroundColor = randomRainbow();
+                })
+            }
+            break;
+        case "color-and-opacity":
+            for (let tile of tiles) {
+                let opacity = 0;
+                tile.addEventListener("mouseover", () => {
+                    tile.style.backgroundColor = randomRainbow();
+                    opacity += 0.1;
+                    tile.style.opacity = `${opacity}`;
+                })
+            }
+            break;
+        case "solid":
+            for (let tile of tiles) {
+                tile.addEventListener("mouseover", () => {
+                    tile.style.backgroundColor = "black";
+                })
+            }
+            break;
+    }
+}
 
 const drawGrid = (size) => {
     for (let i = 0; i < (size * size); i++) {
@@ -22,16 +77,7 @@ const drawGrid = (size) => {
         tile.style.width = containerSize / size + "px";
         tile.style.height = containerSize / size + "px";
     }
-    const tiles = document.getElementsByClassName("tile")
-    console.log(tiles);
-    for (let tile of tiles) {
-        let opacity = 0;
-        tile.addEventListener("mouseover", () => {
-            tile.style.backgroundColor = "black";
-            opacity += 0.1;
-            tile.style.opacity = `${opacity}`;
-        })
-    }
+    applyOption();
 }
 
 generateBtn.addEventListener("click", () => {

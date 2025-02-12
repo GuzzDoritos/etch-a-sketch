@@ -14,6 +14,12 @@
             <p id="description">Move your mouse over the tiles to draw on them! You can also change the drawing grid size below.</p>
         </header>
         <input type="number" name="grid-size" id="grid-size" min="1" max="100">
+        <select name="draw-style" id="draw-style">
+            <option value="color">Color</option>
+            <option value="solid">Solid</option>
+            <option value="opacity">Opacity</option>
+            <option value="color-and-opacity">Color and opacity</option>
+        </select>
         <button id="generate-button">Generate</button>
     </div>
 
